@@ -92,3 +92,49 @@ Profiles make managing multiple environments secure and efficient.
 - `Terraform init` Initializes the working directory with terraform configuration files.
 - `Terraform Plan` Creates an execution plan to show what action terraform would take to reach the desired state.
 - `Terrafrom Apply` Applies actions to reach the desired state of the configuration.
+
+
+### `terraform init` Workflow
+
+1. User initiates `terraform init`.
+2. Directory Initialization.
+3. Provider Plugin Download.
+4. Backend Configuration.
+5. Module Installation.
+6. Output Initialization.
+
+
+### `terraform plan` Workflow
+
+1. User initiates `terraform plan`.
+2. Load Configuration.
+3. Initialize Backend.
+4. Read State.
+5. Generate Execution Plan.
+6. Output Plan.
+
+
+### `terraform apply` Workflow
+
+1. User initiates `terraform apply`.
+2. Load Configuration.
+3. Initialize Backend.
+4. Read State.
+5. Generate Execution Plan.
+6. User Approval.
+7. Apply Changes.
+8. Update State.
+9. Output Results.
+
+
+### `terraform destroy` Workflow
+
+1. User initiates `terraform destroy`.
+2. Load Configuration.
+3. Initialize Backend.
+4. Read State.
+5. Generate Execution Plan.
+6. User Approval.
+7. Destroy Resources.
+8. Update State.
+9. Output Results.
