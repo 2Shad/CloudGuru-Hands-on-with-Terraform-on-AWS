@@ -28,12 +28,13 @@ There are several ways to provide AWS access keys for Terraform to authenticate 
 ---
 
 ### **Option 1: Using AWS CLI**
-1. Configure the AWS CLI with your credentials:
+Configure the AWS CLI with your credentials:
    ```bash
    aws configure
    ```
-   - Enter your **AWS Access Key ID**, **AWS Secret Access Key**, **Default Region**, and **Default Output Format** when prompted.
-2. Terraform will automatically use the credentials from the `~/.aws/credentials` file created by the AWS CLI.
+Enter your **AWS Access Key ID**, **AWS Secret Access Key**, **Default Region**, and **Default Output Format** when prompted.
+
+- Terraform will automatically use the credentials from the `~/.aws/credentials` file created by the AWS CLI.
 
 
 ### **Option 2: Using Environment Variables**
@@ -46,7 +47,6 @@ export AWS_DEFAULT_REGION="us-west-2"
 ```
 
 - Terraform will use these environment variables during execution.
-- This method avoids storing sensitive credentials in code.
 
 
 ### **Option 3: Directly in the `.tf` File** *(Not Recommended for Production)*
@@ -59,7 +59,33 @@ provider "aws" {
   region     = "us-west-2"
 }
 ```
+- The previous two methods avoids storing sensitive credentials in code, where this one stores sensitive credentials in code in plaintext.
 
+
+### **AWS Profiles: Test and Prod**
+
+You can use AWS CLI profiles to manage multiple accounts or environments like `test` and `prod`.
+
+#### **Create Profiles**
+```bash
+aws configure --profile test
+aws configure --profile prod
+```
+
+#### **Use Profiles in Terraform**
+```hcl
+provider "aws" {
+  profile = "test"  // Use "prod" for production
+  region  = "us-west-2"
+}
+```
+
+#### **Set Profile via Environment Variable**
+```bash
+export AWS_PROFILE="test"
+```
+
+Profiles make managing multiple environments secure and efficient.
 
 ## Terraform Essantial Commands
 
